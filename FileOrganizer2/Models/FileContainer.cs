@@ -143,8 +143,11 @@ namespace FileOrganizer2.Models
             MarkedFileCount = files.Count(f => f.Marked);
             RaisePropertyChanged(nameof(MarkedFileCount));
 
-            MaximumIndex = Files.Max(f => f.Index);
-            RaisePropertyChanged(nameof(MaximumIndex));
+            if (Files.Count > 0)
+            {
+                MaximumIndex = Files.Max(f => f.Index);
+                RaisePropertyChanged(nameof(MaximumIndex));
+            }
 
             CursorIndex = CursorIndex;
         });
