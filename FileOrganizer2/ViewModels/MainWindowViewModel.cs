@@ -15,12 +15,12 @@ namespace FileOrganizer2.ViewModels
         private double listViewItemLineHeight = 15;
         private double fontSize = 12.0;
 
-        public string Title => "Prism Application";
+        public string Title => "File Organizer2";
 
         public double ListViewItemLineHeight
         {
             get => listViewItemLineHeight;
-            set => SetProperty(ref listViewItemLineHeight, value);
+            private set => SetProperty(ref listViewItemLineHeight, value);
         }
 
         public double FontSize { get => fontSize; private set => SetProperty(ref fontSize, value); }
