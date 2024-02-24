@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using FileOrganizer2.ViewModels;
 using Microsoft.Xaml.Behaviors;
 
 namespace FileOrganizer2.Models
@@ -37,7 +39,7 @@ namespace FileOrganizer2.Models
 
             var fileList = files.OrderBy(p => p).Select(p => new ExtendFileInfo(p) { Index = ++index, }).ToList();
 
-            // ((sender as Window)?.DataContext as MainWindowViewModel)?.SetFiles(fileList);
+            ((sender as Window)?.DataContext as MainWindowViewModel)?.SetFiles(fileList);
         }
 
         private void AssociatedObject_PreviewDragOver(object sender, DragEventArgs e)
