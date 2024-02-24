@@ -31,7 +31,7 @@ namespace FileOrganizer2.ViewModels
             ListViewItemLineHeight = (int)((double)size * 1.25);
         });
 
-        public FileContainer FileContainer { get; } = new (new List<ExtendFileInfo>());
+        public FileContainer FileContainer { get; set; } = new (new List<ExtendFileInfo>());
 
         public DelegateCommand<object> PageDownCommand => new ((lvActualHeight) =>
         {
@@ -79,6 +79,12 @@ namespace FileOrganizer2.ViewModels
             var files = FileContainer.Files.Where(f => !f.Ignore);
             fileNameChanger.AppendNumber(files);
         });
+
+        public void SetFiles(List<ExtendFileInfo> files)
+        {
+            FileContainer = new FileContainer(files);
+            RaisePropertyChanged(nameof(FileContainer));
+        }
 
         private int GetDisplayingItemCount(double lvActualHeight)
         {
