@@ -10,7 +10,7 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:FileOrganizer2.ViewModels"
     Title="{Binding Title}"
-    Width="640"
+    Width="720"
     Height="400"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
