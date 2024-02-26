@@ -9,6 +9,7 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:FileOrganizer2.ViewModels"
+    x:Name="Window"
     Title="{Binding Title}"
     Width="720"
     Height="400"
