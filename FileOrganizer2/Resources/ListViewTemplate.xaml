@@ -77,12 +77,28 @@
     <Style x:Key="ListViewItemContainerStyle" TargetType="ListViewItem">
         <Setter Property="IsSelected" Value="{Binding IsSelected}" />
 
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Border.Background" Value=" PowderBlue" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+
         <Style.Triggers>
             <Trigger Property="ListView.AlternationIndex" Value="0">
                 <Setter Property="Background" Value="OldLace" />
             </Trigger>
-
         </Style.Triggers>
+
     </Style>
 
 </ResourceDictionary>
