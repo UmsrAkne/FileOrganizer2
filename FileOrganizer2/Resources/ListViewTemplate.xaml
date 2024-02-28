@@ -5,6 +5,8 @@
     xmlns:m="clr-namespace:FileOrganizer2.Models"
     xmlns:viewModels="clr-namespace:FileOrganizer2.ViewModels">
 
+    <m:NumberFormatConverter x:Key="NumberFormatConverter" />
+
     <DataTemplate x:Key="ListViewItemTemplate" DataType="{x:Type m:ExtendFileInfo}">
 
         <ContentControl Height="{Binding ElementName=Window, Path=DataContext.(viewModels:MainWindowViewModel.ListViewItemLineHeight)}">
@@ -26,7 +28,7 @@
                 <TextBlock
                     Grid.Column="0"
                     FontSize="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.FontSize)}"
-                    Text="{Binding Index}" />
+                    Text="{Binding Index, Converter={StaticResource NumberFormatConverter}}" />
 
                 <TextBlock Grid.Column="1" FontSize="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.(viewModels:MainWindowViewModel.FontSize)}">
                     <TextBlock.Style>
