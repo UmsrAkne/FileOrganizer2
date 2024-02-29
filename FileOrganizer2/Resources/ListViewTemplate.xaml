@@ -82,7 +82,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
-                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                    <Border
+                        x:Name="Border"
+                        Padding="0,1"
+                        Background="{TemplateBinding Background}">
                         <ContentPresenter />
                     </Border>
                     <ControlTemplate.Triggers>
