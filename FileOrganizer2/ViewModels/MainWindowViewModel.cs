@@ -9,9 +9,10 @@ using Prism.Mvvm;
 namespace FileOrganizer2.ViewModels
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : BindableBase, IDisposable
     {
         private readonly Renamer fileNameChanger = new ();
+        private readonly SoundPlayer soundPlayer = new ();
         private double listViewItemLineHeight = 15;
         private double fontSize = 12.0;
 
@@ -55,8 +56,7 @@ namespace FileOrganizer2.ViewModels
                 FileContainer.Files.ToList().ForEach(f => f.Playing = false);
                 FileContainer.SelectedItem.Playing = true;
 
-                // windowsMediaPlayer.URL = FileContainer.SelectedItem.FileInfo.FullName;
-                // windowsMediaPlayer.controls.play();
+                soundPlayer.PlayAudio(FileContainer.SelectedItem.FileInfo.FullName);
                 return;
             }
 
@@ -84,6 +84,17 @@ namespace FileOrganizer2.ViewModels
         {
             FileContainer = new FileContainer(files);
             RaisePropertyChanged(nameof(FileContainer));
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            soundPlayer.Dispose();
         }
 
         private int GetDisplayingItemCount(double lvActualHeight)
