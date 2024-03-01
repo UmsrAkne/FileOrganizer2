@@ -60,7 +60,17 @@ namespace FileOrganizer2.ViewModels
                 return;
             }
 
-            Process.Start(FileContainer.SelectedItem.FileInfo.FullName);
+            var extension = FileContainer.SelectedItem.FileInfo.Extension;
+            if (Enum.TryParse<AllowedExtensions>(extension.ToLower()[1..], true, out _))
+            {
+                var ps = new ProcessStartInfo()
+                {
+                    UseShellExecute = true,
+                    FileName = FileContainer.SelectedItem.FileInfo.FullName,
+                };
+
+                Process.Start(ps);
+            }
         });
 
         public DelegateCommand AppendPrefixToIgnoreFilesCommand => new (() =>
