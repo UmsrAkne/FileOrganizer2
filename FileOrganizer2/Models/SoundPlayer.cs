@@ -11,13 +11,6 @@ namespace FileOrganizer2.Models
         private readonly WaveOutEvent waveOut = new ();
         private WaveStream reader;
 
-        public SoundPlayer()
-        {
-            waveOut.PlaybackStopped += WaveOutOnPlaybackStopped;
-        }
-
-        public bool Playing { get; set; }
-
         /// <summary>
         /// 指定したファイルパスの音声ファイルを再生します。
         /// </summary>
@@ -41,7 +34,6 @@ namespace FileOrganizer2.Models
                 return;
             }
 
-            Playing = true;
             waveOut.Init(reader);
             waveOut.Play();
         }
@@ -56,12 +48,6 @@ namespace FileOrganizer2.Models
         {
             reader.Dispose();
             waveOut.Dispose();
-        }
-
-        private void WaveOutOnPlaybackStopped(object sender, StoppedEventArgs e)
-        {
-            Playing = false;
-            System.Diagnostics.Debug.WriteLine($"stop (SoundPlayer : 68)");
         }
     }
 }
