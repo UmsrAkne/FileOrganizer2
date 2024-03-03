@@ -11,6 +11,13 @@ namespace FileOrganizer2.Models
         private readonly WaveOutEvent waveOut = new ();
         private WaveStream reader;
 
+        public SoundPlayer()
+        {
+            waveOut.PlaybackStopped += SwitchPlayingStatus;
+        }
+
+        public ExtendFileInfo PlayingFileInfo { get; set; }
+
         /// <summary>
         /// 指定したファイルパスの音声ファイルを再生します。
         /// </summary>
@@ -18,6 +25,11 @@ namespace FileOrganizer2.Models
         public void PlayAudio(string filePath)
         {
             waveOut.Stop();
+
+            if (PlayingFileInfo != null)
+            {
+                PlayingFileInfo.Playing = false;
+            }
 
             var f = new FileInfo(filePath);
 
@@ -48,6 +60,19 @@ namespace FileOrganizer2.Models
         {
             reader.Dispose();
             waveOut.Dispose();
+        }
+
+        private void SwitchPlayingStatus(object sender, StoppedEventArgs e)
+        {
+            if (sender is not WaveOutEvent { PlaybackState: PlaybackState.Stopped })
+            {
+                return;
+            }
+
+            if (PlayingFileInfo != null)
+            {
+                PlayingFileInfo.Playing = false;
+            }
         }
     }
 }
