@@ -53,10 +53,10 @@ namespace FileOrganizer2.ViewModels
 
             if (FileContainer.SelectedItem.IsSoundFile)
             {
-                FileContainer.Files.ToList().ForEach(f => f.Playing = false);
                 FileContainer.SelectedItem.Playing = true;
 
                 soundPlayer.PlayAudio(FileContainer.SelectedItem.FileInfo.FullName);
+                soundPlayer.PlayingFileInfo = FileContainer.SelectedItem;
                 return;
             }
 
