@@ -119,7 +119,25 @@ namespace FileOrganizer2.Models
             }
         });
 
-        public DelegateCommand ReloadCommand => new DelegateCommand(() =>
+        public ExtendFileInfo SelectedItem { get => selectedItem; set => SetProperty(ref selectedItem, value); }
+
+        public DelegateCommand<ExtendFileInfo> ToggleIgnoreCommand => new DelegateCommand<ExtendFileInfo>((f) =>
+        {
+            f.Ignore = !f.Ignore;
+            ReloadCommand.Execute();
+        });
+
+        public DelegateCommand<ExtendFileInfo> ToggleMarkCommand => new DelegateCommand<ExtendFileInfo>((f) =>
+        {
+            f.Marked = !f.Marked;
+            ReloadCommand.Execute();
+        });
+
+        public object MaximumIndex { get; set; }
+
+        private List<ExtendFileInfo> OriginalFiles { get; set; }
+
+        private DelegateCommand ReloadCommand => new DelegateCommand(() =>
         {
             Files = OriginalFiles
                 .Where(f => ContainsIgnoreFiles || !f.Ignore)
@@ -151,23 +169,5 @@ namespace FileOrganizer2.Models
 
             CursorIndex = CursorIndex;
         });
-
-        public ExtendFileInfo SelectedItem { get => selectedItem; set => SetProperty(ref selectedItem, value); }
-
-        public DelegateCommand<ExtendFileInfo> ToggleIgnoreCommand => new DelegateCommand<ExtendFileInfo>((f) =>
-        {
-            f.Ignore = !f.Ignore;
-            ReloadCommand.Execute();
-        });
-
-        public DelegateCommand<ExtendFileInfo> ToggleMarkCommand => new DelegateCommand<ExtendFileInfo>((f) =>
-        {
-            f.Marked = !f.Marked;
-            ReloadCommand.Execute();
-        });
-
-        public object MaximumIndex { get; set; }
-
-        private List<ExtendFileInfo> OriginalFiles { get; set; }
     }
 }
