@@ -115,6 +115,10 @@
                 <MenuItem Command="{Binding AppendNumberWithoutIgnoreFileCommand}" Header="無視ファイル以外の先頭に連番をつける" />
                 <MenuItem Command="{Binding AppendPrefixToIgnoreFilesCommand}" Header="無視ファイルにプレフィックス" />
             </MenuItem>
+
+            <MenuItem Header="マーク">
+                <MenuItem Command="{Binding FileContainer.MarkAllFileCommand}" Header="全てのファイルをマークする" />
+            </MenuItem>
         </Menu>
 
         <StackPanel
