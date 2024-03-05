@@ -118,6 +118,8 @@
 
             <MenuItem Header="マーク">
                 <MenuItem Command="{Binding FileContainer.MarkAllFileCommand}" Header="全てのファイルをマークする" />
+                <MenuItem Command="{Binding FileContainer.UnMarkAllFileCommand}" Header="全てのファイルをマークを外す" />
+                <MenuItem Command="{Binding FileContainer.ToggleAllMarkCommand}" Header="全てのファイルのマークを反転する" />
             </MenuItem>
         </Menu>
 

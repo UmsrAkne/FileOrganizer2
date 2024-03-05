@@ -139,6 +139,15 @@ namespace FileOrganizer2.Models
             ReloadCommand.Execute();
         });
 
+        public DelegateCommand UnMarkAllFileCommand => new DelegateCommand(() =>
+        {
+            OriginalFiles.ForEach(f => f.Marked = false);
+            ReloadCommand.Execute();
+        });
+
+        public DelegateCommand ToggleAllMarkCommand => new DelegateCommand(() =>
+        {
+            OriginalFiles.ForEach(f => f.Marked = !f.Marked);
             ReloadCommand.Execute();
         });
 
