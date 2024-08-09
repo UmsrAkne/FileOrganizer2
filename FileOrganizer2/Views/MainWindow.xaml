@@ -10,7 +10,7 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:FileOrganizer2.ViewModels"
     x:Name="Window"
-    Title="{Binding Title}"
+    Title="{Binding TextWrapper}"
     Width="720"
     Height="400"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"

@@ -16,7 +16,7 @@ namespace FileOrganizer2.ViewModels
         private double listViewItemLineHeight = 15;
         private double fontSize = 12.0;
 
-        public string Title => "File Organizer2";
+        public TextWrapper TextWrapper { get; set; } = new ();
 
         public double ListViewItemLineHeight
         {
