@@ -11,7 +11,7 @@ namespace FileOrganizer2.Models
             files = new List<ExtendFileInfo>();
             for (var i = 0; i < 30; i++)
             {
-                files.Add(new ExtendFileInfo($"test/testFile_{i}")
+                files.Add(new ExtendFileInfo($"test/testFile_{i:0000}")
                 {
                     Ignore = false,
                     Index = 0,
