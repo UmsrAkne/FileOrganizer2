@@ -4,26 +4,20 @@ namespace FileOrganizer2.Models
 {
     public class DummyFileProvider : IFileProvider
     {
-        private List<ExtendFileInfo> files = new ()
-        {
-        };
+        private readonly List<ExtendFileInfo> files;
 
         public DummyFileProvider()
         {
+            files = new List<ExtendFileInfo>();
             for (var i = 0; i < 30; i++)
             {
-                files.Add(new ($"test/testFile_{i}")
+                files.Add(new ExtendFileInfo($"test/testFile_{i}")
                 {
                     Ignore = false,
                     Index = 0,
                     TentativeName = string.Empty,
                 });
             }
-        }
-
-        public void LoadFiles(string path)
-        {
-            System.Diagnostics.Debug.WriteLine($"{path} が LoadFiles に渡されました。(DummyFileProvider : 9)");
         }
 
         public IEnumerable<ExtendFileInfo> GetExtendFileInfos()
