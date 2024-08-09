@@ -16,7 +16,18 @@ namespace FileOrganizer2.ViewModels
         private double listViewItemLineHeight = 15;
         private double fontSize = 12.0;
 
-        public string Title => "File Organizer2";
+        public MainWindowViewModel()
+        {
+            FileContainer = new FileContainer(new DummyFileProvider().GetExtendFileInfos());
+        }
+
+        public MainWindowViewModel(IFileProvider fileProvider)
+        {
+            FileProvider = fileProvider;
+            FileContainer = new FileContainer(FileProvider.GetExtendFileInfos());
+        }
+
+        public TextWrapper TextWrapper { get; set; } = new ();
 
         public double ListViewItemLineHeight
         {
@@ -32,7 +43,7 @@ namespace FileOrganizer2.ViewModels
             ListViewItemLineHeight = (int)((double)size * 1.25);
         });
 
-        public FileContainer FileContainer { get; set; } = new (new List<ExtendFileInfo>());
+        public FileContainer FileContainer { get; set; }
 
         public DelegateCommand<object> PageDownCommand => new ((lvActualHeight) =>
         {
@@ -89,6 +100,8 @@ namespace FileOrganizer2.ViewModels
             var files = FileContainer.Files.Where(f => !f.Ignore);
             fileNameChanger.AppendNumber(files);
         });
+
+        private IFileProvider FileProvider { get; set; }
 
         public void SetFiles(List<ExtendFileInfo> files)
         {
